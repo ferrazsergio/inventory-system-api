@@ -13,12 +13,13 @@ Este é um projeto prático para demonstrar o uso do PL/SQL junto com Java Sprin
 
 ## Tecnologias Utilizadas
 - **Back-End**:
-  - Java 17
+  - Java 21
   - Spring Boot 3.x
   - Arquitetura MVC
   - Flyway para migração de banco de dados
 - **Banco de Dados**:
   - Oracle Database XE (via Docker)
+  - Oracle SQL Developer
   - PL/SQL para regras de negócio
 - **Ferramentas de Desenvolvimento**:
   - Docker e Docker Compose

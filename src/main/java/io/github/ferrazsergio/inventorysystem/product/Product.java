@@ -1,5 +1,7 @@
-package io.github.ferrazsergio.inventorysystem.model.entities;
+package io.github.ferrazsergio.inventorysystem.product;
 
+import io.github.ferrazsergio.inventorysystem.category.Category;
+import io.github.ferrazsergio.inventorysystem.supplier.Supplier;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

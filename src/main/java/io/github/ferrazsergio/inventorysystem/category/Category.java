@@ -1,4 +1,4 @@
-package io.github.ferrazsergio.inventorysystem.model.entities;
+package io.github.ferrazsergio.inventorysystem.category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

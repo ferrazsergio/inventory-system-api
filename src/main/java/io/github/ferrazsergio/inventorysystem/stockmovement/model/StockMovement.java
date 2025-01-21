@@ -1,7 +1,8 @@
-package io.github.ferrazsergio.inventorysystem.model.entities;
+package io.github.ferrazsergio.inventorysystem.stockmovement.model;
 
 import java.util.Date;
 
+import io.github.ferrazsergio.inventorysystem.product.Product;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
