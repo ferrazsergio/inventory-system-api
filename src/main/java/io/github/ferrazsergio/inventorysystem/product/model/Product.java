@@ -1,9 +1,12 @@
 package io.github.ferrazsergio.inventorysystem.product.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.github.ferrazsergio.inventorysystem.category.model.Category;
 import io.github.ferrazsergio.inventorysystem.supplier.model.Supplier;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,6 +17,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "products")
 public class Product {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,12 +25,15 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    @JsonIgnoreProperties("products") // Evita problemas de recursividade
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "supplier_id")
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "supplier_id", nullable = false)
+    @JsonIgnoreProperties("products") // Evita problemas de recursividade
     private Supplier supplier;
 
     private int quantity;

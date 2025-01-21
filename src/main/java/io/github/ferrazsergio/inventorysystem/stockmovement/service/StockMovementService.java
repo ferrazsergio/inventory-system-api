@@ -15,6 +15,13 @@ public class StockMovementService {
     private StockMovementRepository stockMovementRepository;
 
     public StockMovement saveStockMovement(StockMovement stockMovement) {
+        String correctedMovementType = stockMovement.getMovementType().toUpperCase();
+        
+        if (!correctedMovementType.equals("IN") && !correctedMovementType.equals("OUT")) {
+            throw new IllegalArgumentException("Tipo de movimentação inválido.");
+        }
+        stockMovement.setMovementType(correctedMovementType);
+        
         return stockMovementRepository.save(stockMovement);
     }
 
