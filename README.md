@@ -194,11 +194,6 @@ public class StockMovementController {
     @Autowired
     private StockMovementService stockMovementService;
 
-    @PostMapping
-    public ResponseEntity<StockMovement> createStockMovement(@RequestBody StockMovement stockMovement) {
-        return ResponseEntity.ok(stockMovementService.saveStockMovement(stockMovement));
-    }
-
     @GetMapping
     public List<StockMovement> getStockMovements() {
         return stockMovementService.getAllStockMovements();

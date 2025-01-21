@@ -27,13 +27,13 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = false)
-    @JsonIgnoreProperties("products") // Evita problemas de recursividade
+    @JsonIgnoreProperties("products") 
     private Category category;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "supplier_id", nullable = false)
-    @JsonIgnoreProperties("products") // Evita problemas de recursividade
+    @JsonIgnoreProperties("products") 
     private Supplier supplier;
 
     private int quantity;
