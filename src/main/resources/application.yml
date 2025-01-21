@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: test 
+
+  # Configuração geral do projeto
+  project:
+    name: "Sistema de Gestão de Estoque"
+    version: "1.0"

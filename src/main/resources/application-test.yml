@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/${ORACLE_DATABASE:inventorydb}
+    username: ${APP_USER:hr}
+    password: ${APP_USER_PASSWORD:hr}
+    driver-class-name: oracle.jdbc.OracleDriver

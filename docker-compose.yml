@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  oracle-server-db:
+    image: 	gvenzl/oracle-xe
+    container_name: oracle-server-db
+    ports:
+      - "1521:1521"
+    env_file:
+      - ./config/oracle.env  
