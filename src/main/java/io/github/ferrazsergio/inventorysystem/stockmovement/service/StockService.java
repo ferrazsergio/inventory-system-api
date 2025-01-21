@@ -12,6 +12,11 @@ public class StockService {
    private StockRepository stockRepository;
 
    public void updateStock(int productId, int quantity, String movementType) {
+	    String correctedMovementType = movementType.toUpperCase();
+       
+       if (!correctedMovementType.equals("IN") && !correctedMovementType.equals("OUT")) {
+           throw new IllegalArgumentException("Tipo de movimentação inválido.");
+       }
        stockRepository.updateStock(productId, quantity, movementType);
    }
 }
