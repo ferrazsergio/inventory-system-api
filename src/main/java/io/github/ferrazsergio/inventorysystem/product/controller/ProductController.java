@@ -1,5 +1,6 @@
 package io.github.ferrazsergio.inventorysystem.product.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,6 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
-        System.out.println("Raw ProductDTO: " + productDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productDTO));
     }
 
@@ -46,5 +46,11 @@ public class ProductController {
     public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
         return ResponseEntity.ok("Product deleted successfully");
+    }
+    
+    @GetMapping("/category/{categoryId}/total-stock")
+    public ResponseEntity<BigDecimal> getTotalStockByCategory(@PathVariable Long categoryId) {
+        BigDecimal totalStock = productService.calculateTotalStockByCategory(categoryId);
+        return ResponseEntity.ok(totalStock);
     }
 }

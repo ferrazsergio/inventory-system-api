@@ -1,5 +1,6 @@
 package io.github.ferrazsergio.inventorysystem.product.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,7 @@ public class ProductService {
     @Autowired
     private SupplierRepository supplierRepository;
 
-    public Product createProduct(ProductDTO productDTO) {
-    	 System.out.println("ProductDTO: " + productDTO);
-    	    System.out.println("CategoryId: " + productDTO.getCategoryId());
-    	    System.out.println("SupplierId: " + productDTO.getSupplierId());
-    	    System.out.println("Name: " + productDTO.getName());
-    	    System.out.println("Quantity: " + productDTO.getQuantity());
-    	    
+    public Product createProduct(ProductDTO productDTO) {	    
         // Buscar a categoria
         Category category = categoryRepository.findById(productDTO.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
@@ -62,4 +57,9 @@ public class ProductService {
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
+    
+    public BigDecimal calculateTotalStockByCategory(Long categoryId) {
+        return productRepository.calculateTotalStockByCategory(categoryId);
+    }
+    
 }
