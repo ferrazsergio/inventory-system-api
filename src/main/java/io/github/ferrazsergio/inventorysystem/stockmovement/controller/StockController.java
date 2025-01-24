@@ -1,6 +1,10 @@
 package io.github.ferrazsergio.inventorysystem.stockmovement.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import io.github.ferrazsergio.inventorysystem.stockmovement.service.StockService;
@@ -22,5 +26,10 @@ public class StockController {
        } catch (Exception e) {
            return "Error updating stock: " + e.getMessage();
        }
+   }
+   
+   @GetMapping("/movements")
+   public ResponseEntity<List<Map<String, Object>>> getMovements() {
+       return ResponseEntity.ok(stockService.getStockMovements());
    }
 }

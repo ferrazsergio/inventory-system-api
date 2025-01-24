@@ -26,7 +26,34 @@ public class ProductService {
     @Autowired
     private SupplierRepository supplierRepository;
 
-    public Product createProduct(ProductDTO productDTO) {	    
+    public Product createProduct(ProductDTO productDTO) {
+        Product product = new Product(); // Novo produto
+        return productRepository.save(convertDtoToEntity(productDTO, product));
+    }
+
+
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    public Product updateProduct(Long id, ProductDTO productDTO) {
+        // Buscar o produto existente
+        Product existingProduct = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        // Atualizar os dados com base no DTO
+        return productRepository.save(convertDtoToEntity(productDTO, existingProduct));
+    }
+    
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
+    
+    public BigDecimal calculateTotalStockByCategory(Long categoryId) {
+        return productRepository.calculateTotalStockByCategory(categoryId);
+    }
+    
+    private Product convertDtoToEntity(ProductDTO productDTO, Product product) {
         // Buscar a categoria
         Category category = categoryRepository.findById(productDTO.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
@@ -35,31 +62,14 @@ public class ProductService {
         Supplier supplier = supplierRepository.findById(productDTO.getSupplierId())
                 .orElseThrow(() -> new RuntimeException("Supplier not found"));
 
-        // Criar e salvar o produto
-        Product product = new Product();
+        // Mapear os dados do DTO para a entidade
         product.setName(productDTO.getName());
         product.setCategory(category);
         product.setSupplier(supplier);
         product.setQuantity(productDTO.getQuantity());
 
-        return productRepository.save(product);
+        return product;
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
-    }
-
-    public Product updateProduct(Long id, Product product) {
-        product.setId(id);
-        return productRepository.save(product);
-    }
-
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
-    }
-    
-    public BigDecimal calculateTotalStockByCategory(Long categoryId) {
-        return productRepository.calculateTotalStockByCategory(categoryId);
-    }
     
 }
